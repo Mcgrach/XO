@@ -24,16 +24,24 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
+<div align="center" class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-
+        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">
+            Logout</a></h2>
     </c:if>
+
+    <form method="post" action="${contextPath}/game" class="form-signin">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <div class="form-group ${error != null ? 'has-error' : ''}">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Start Game</button>
+                <h4 class="text-center"><a href="${contextPath}/statistics">Statistics</a></h4>
+            </div>
+    </form>
 
 </div>
 <!-- /container -->

@@ -11,6 +11,8 @@
 
     <import resource="appconfig-security.xml"/>
 
+    <bean id="log" class="com.game.logistic.Logistic"/>
+
     <!-- Scans within the base package of the application for @Component classes to configure as beans -->
     <context:component-scan base-package="com.account.*"/>
 
