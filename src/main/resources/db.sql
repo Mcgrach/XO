@@ -44,3 +44,30 @@ CREATE TABLE `user_role` (
   CONSTRAINT `fk_user_role_roleid` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_user_role_userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `statistics`
+--
+
+DROP TABLE IF EXISTS `statistics`;
+CREATE TABLE `statistics` (
+  `id` int(11) NOT NULL,
+  `win` int(11) NOT NULL,
+  `lose` int(11) NOT NULL,
+  `draw` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+--
+-- Table structure for table `user_role`
+--
+
+DROP TABLE IF EXISTS `user_statistics`;
+CREATE TABLE `user_statistics` (
+  `user_id` int(11) NOT NULL,
+  `statistics_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`statistics_id`),
+  KEY `fk_user_statistics_statisticsid_idx` (`statistics_id`),
+  CONSTRAINT `fk_user_statistics_statisticsid` FOREIGN KEY (`statistics_id`) REFERENCES `statistics` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_statistics_userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
